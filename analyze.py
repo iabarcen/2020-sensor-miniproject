@@ -56,12 +56,39 @@ if __name__ == "__main__":
 
     data = load_data(file_path)
 
-    for k in data:
-        # data[k].plot()
-        time = data[k].index
-        data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
+    # for k in data:  # k = temperature, occupancy, and co2
+    #     # data[k].plot()
+    #     time = data[k].index
+    #     data[k].hist()
+    #     plt.figure()
+    # #     plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
+    # #     plt.xlabel("Time (seconds)")
+
+    # plt.show()
+
+    
+        #time = data["co2"].index
+
+    # Room Class1
+    plot1 = plt.figure("Class 1 Temperature")
+    time = data["temperature"].index
+    data["temperature"].class1.hist(color='#90EE90')
+
+    plt.xlabel('time') 
+    plt.ylabel('temperature') 
+  
+    plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
+
+
+    plot2 = plt.figure("Class 1 Occupancy")
+    time = data["occupancy"].index
+    data["occupancy"].class1.hist(color='#90EE90')
+
+    plt.xlabel('time') 
+    plt.ylabel('occupancy') 
+  
+    plt.title('Occupancy Condition for Class1\n\n', fontweight ="bold") 
 
     plt.show()
+
+    
