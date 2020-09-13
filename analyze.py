@@ -17,6 +17,8 @@ import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
 
+import os
+
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
@@ -44,13 +46,15 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
-    p.add_argument("file", help="path to JSON data file")
-    P = p.parse_args()
 
-    file = Path(P.file).expanduser()
+    file_path = os.getcwd() + "\client_data.txt"
 
-    data = load_data(file)
+    # p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
+    # p.add_argument("file", help="path to JSON data file")
+    # P = p.parse_args()
+    # file = Path(P.file).expanduser()
+
+    data = load_data(file_path)
 
     for k in data:
         # data[k].plot()
