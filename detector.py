@@ -27,19 +27,13 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 def detect_anomalies(data):
     classdf = data["class1"]
     class_mean = classdf.mean()
+    class_median = classdf.median()
+    class_var = classdf.var() 
     class_std_dev= classdf.std()
     upper_limit = class_mean + class_std_dev
     lower_limit = class_mean - class_std_dev
-
     class_size=len(classdf)
-    anomalies = 0
 
-    """ for i, temp  in classdf:
-        temp=classdf(i)
-        if temp < lower_limit | temp > upper_limit:
-            anomalies +=1
-            classdf = classdf.drop(i)
-    """
     ibad = (classdf<lower_limit)|(classdf>upper_limit)
     classdf = classdf.loc[~ibad]
     new_median=classdf.median()
@@ -47,8 +41,10 @@ def detect_anomalies(data):
     anomalies=sum(ibad)
 
     print("The percent of \"bad\" data points for class 1 is"+str((anomalies/class_size)*100)+"%\n")
-    print("The temperature median and variance with these anomalies removed are,\n")
+    print("The temperature median and variance with these anomalies removed are,")
     print("Median:"+str(new_median)+"\nVariance:"+str(new_var))
+    print("In comparison the median and variance with these anomallies are,")
+    print("Median:"+str(class_median)+"\nVariance:"+str(class_var))
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
