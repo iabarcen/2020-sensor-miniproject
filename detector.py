@@ -40,11 +40,11 @@ def detect_anomalies(data):
     new_var=classdf.var()
     anomalies=sum(ibad)
 
-    print("The percent of \"bad\" data points for class 1 is"+str((anomalies/class_size)*100)+"%\n")
+    print("\nThe percent of \"bad\" data points for class1 is "+str((anomalies/class_size)*100)+"%")
     print("The temperature median and variance with these anomalies removed are,")
     print("Median:"+str(new_median)+"\nVariance:"+str(new_var))
-    print("In comparison the median and variance with these anomallies are,")
-    print("Median:"+str(class_median)+"\nVariance:"+str(class_var))
+    print("\nIn comparison the median and variance with these anomallies are,")
+    print("Median:"+str(class_median)+"\nVariance:"+str(class_var)+"\n")
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
