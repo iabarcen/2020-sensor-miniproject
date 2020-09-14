@@ -89,6 +89,8 @@ if __name__ == "__main__":
         class1temp = class1temp.rename(index = {t:timestr})
     print(class1temp)
 
+    # print(data["class1"])
+
         
 
     # plt.xlabel('time') 
@@ -107,5 +109,18 @@ if __name__ == "__main__":
     # plt.title('Occupancy Condition for Class1\n\n', fontweight ="bold") 
 
     # plt.show()
+
+    # Calculate medians and variances
+    print("\n----------Calculate medians and variances----------\n")
+
+    print("Median temperature in class 1: ", end='')
+    print('%5.2f' % (data["temperature"].class1.median()))
+    print("Variance in temperature in class 1: ", end='')
+    print('%5.2f' % (data["temperature"].class1.var()))
+    print()
+    print("Median occupancy in class 1: ", end='')
+    print('%5.2f' % (data["occupancy"].class1.median()))
+    print("Variance in occupancy in class 1: ", end='')
+    print('%5.2f' % (data["occupancy"].class1.var()))
 
     
