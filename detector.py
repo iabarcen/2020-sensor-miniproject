@@ -9,8 +9,6 @@ import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
 
-file = open("client_data.txt")
-
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
     temperature = {}
@@ -27,7 +25,7 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
     return data
 
 def detect_anomalies(data):
-    classdf = data["temperature"]
+    classdf = data["class1"]
     class_mean = classdf.mean()
     class_std_dev= classdf.std()
     upper_limit = class_mean + class_std_dev
@@ -36,15 +34,17 @@ def detect_anomalies(data):
     class_size=len(classdf)
     anomalies = 0
 
-    breakpoint()
-    for i, temp  in classdf
+    """ for i, temp  in classdf:
         temp=classdf(i)
-        if temp < lower_limit or temp > upper_limit
+        if temp < lower_limit | temp > upper_limit:
             anomalies +=1
             classdf = classdf.drop(i)
-
+    """
+    ibad = (classdf<lower_limit)|(classdf>upper_limit)
+    classdf = classdf.loc[~ibad]
     new_median=classdf.median()
     new_var=classdf.var()
+    anomalies=sum(ibad)
 
     print("The percent of \"bad\" data points for class 1 is"+str((anomalies/class_size)*100)+"%\n")
     print("The temperature median and variance with these anomalies removed are,\n")
