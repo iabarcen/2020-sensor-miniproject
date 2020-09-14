@@ -47,31 +47,55 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
 if __name__ == "__main__":
 
-    file_path = os.getcwd() + "\client_data.txt"
-
-    # p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
-    # p.add_argument("file", help="path to JSON data file")
-    # P = p.parse_args()
-    # file = Path(P.file).expanduser()
-
-    data = load_data(file_path)
+    p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
+    p.add_argument("file", help="path to JSON data file")
+    P = p.parse_args()
+    file = Path(P.file).expanduser()
 
     # for k in data:  # k = temperature, occupancy, and co2
     #     # data[k].plot()
     #     time = data[k].index
     #     data[k].hist()
     #     plt.figure()
-    # #     plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-    # #     plt.xlabel("Time (seconds)")
+        # plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
+        # plt.xlabel("Time (seconds)")
 
     # plt.show()
 
     
         #time = data["co2"].index
 
-    # Room Class1
+    # # Load data from client_data.txt
+    # file_path = os.getcwd() + "\client_data.txt"
+    # data = load_data(file_path)
+
+    # # Room Class1
+    # time = data["temperature"].index
+    # class1temp = data["temperature"].class1
+    # class1occu = data["occupancy"].class1
+
+    # for t in time:
+    #     timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute)
+    #     class1temp = class1temp.rename(index = {t:timestr})
+    #     class1occu = class1occu.rename(index = {t:timestr})
+
+    # print(class1temp)
+
+    # plot1 = plt.figure("Class 1 Temperature")
+    # class1temp.hist(color='#90EE90')
+    # plt.xlabel('temperature') 
+    # plt.ylabel('times') 
+    # plt.title('Temperature Condition for Class 1\n\n', fontweight ="bold") 
+
+    # plot2 = plt.figure("Class 1 Occupancy")
+    # class1occu.hist(color='#A1C7CB')
+    # plt.xlabel('occupancy') 
+    # plt.ylabel('times') 
+    # plt.title('Occupancy Condition for Class 1\n\n', fontweight ="bold") 
+
+    # plt.show()
+
     #plot1 = plt.figure("Class 1 Temperature")
-    time = data["temperature"].index
     #data["temperature"].class1.hist(color='#90EE90')
     
     #print(time.values[1].astype(datetime.datetime))
@@ -80,20 +104,20 @@ if __name__ == "__main__":
     # print(timestr)
     # print ('%02d' % time[0].hour + ":")
 
-    class1temp = data["temperature"].class1
-    #print(class1temp)
-    #print("--------------------------------")
-    for t in time:
-        timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute) + ":" + ('%02d' % t.second)
-        # print (timestr)
-        class1temp = class1temp.rename(index = {t:timestr})
-    #print(class1temp)
+    # class1temp = data["temperature"].class1
+    # #print(class1temp)
+    # #print("--------------------------------")
+    # for t in time:
+    #     timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute) + ":" + ('%02d' % t.second)
+    #     # print (timestr)
+    #     class1temp = class1temp.rename(index = {t:timestr})
+    # #print(class1temp)
 
-    plot1 = plt.figure("Class 1 Temperature")
-    class1temp.hist(color='#90EE90')
-    plt.xlabel('time') 
-    plt.ylabel('temperature') 
-    plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
+    # plot1 = plt.figure("Class 1 Temperature")
+    # class1temp.hist(color='#90EE90')
+    # plt.xlabel('time') 
+    # plt.ylabel('temperature') 
+    # plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
 
 
     # plot2 = plt.figure("Class 1 Occupancy")
@@ -105,19 +129,19 @@ if __name__ == "__main__":
   
     # plt.title('Occupancy Condition for Class1\n\n', fontweight ="bold") 
 
-    plt.show()
+    # plt.show()
 
     # Calculate medians and variances
-    print("\n----------Calculate medians and variances----------\n")
+    # print("\n----------Calculate medians and variances----------\n")
 
-    print("Median temperature in class 1: ", end='')
-    print('%5.2f' % (data["temperature"].class1.median()))
-    print("Variance in temperature in class 1: ", end='')
-    print('%5.2f' % (data["temperature"].class1.var()))
-    print()
-    print("Median occupancy in class 1: ", end='')
-    print('%5.2f' % (data["occupancy"].class1.median()))
-    print("Variance in occupancy in class 1: ", end='')
-    print('%5.2f' % (data["occupancy"].class1.var()))
+    # print("Median temperature in class 1: ", end='')
+    # print('%5.2f' % (data["temperature"].class1.median()))
+    # print("Variance in temperature in class 1: ", end='')
+    # print('%5.2f' % (data["temperature"].class1.var()))
+    # print()
+    # print("Median occupancy in class 1: ", end='')
+    # print('%5.2f' % (data["occupancy"].class1.median()))
+    # print("Variance in occupancy in class 1: ", end='')
+    # print('%5.2f' % (data["occupancy"].class1.var()))
 
     
