@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import pandas
+from pathlib import Path
+import argparse
+import json
+from datetime import datetime
+import typing as T
+import matplotlib.pyplot as plt
+import numpy as np
+
+file = open("client_data.txt")
+
+def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
+
+    temperature = {}
+
+    with open(file, "r") as f:
+        for line in f:
+            r = json.loads(line)
+            room = list(r.keys())[0]
+            time = datetime.fromisoformat(r[room]["time"])
+
+            temperature[time] = {room: r[room]["temperature"][0]}
+
+    data = pandas.DataFrame.from_dict(temperature, "index").sort_index()
+    return data
+
+def detect_anomalies(data):
+    classdf = data["temperature"]
+    class_mean = classdf.mean()
+    class_std_dev= classdf.std()
+    upper_limit = class_mean + class_std_dev
+    lower_limit = class_mean - class_std_dev
+
+    class_size=len(classdf)
+    anomalies = 0
+
+    breakpoint()
+    for i, temp  in classdf
+        temp=classdf(i)
+        if temp < lower_limit or temp > upper_limit
+            anomalies +=1
+            classdf = classdf.drop(i)
+
+    new_median=classdf.median()
+    new_var=classdf.var()
+
+    print("The percent of \"bad\" data points for class 1 is"+str((anomalies/class_size)*100)+"%\n")
+    print("The temperature median and variance with these anomalies removed are,\n")
+    print("Median:"+str(new_median)+"\nVariance:"+str(new_var))
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
+    p.add_argument("file", help="path to JSON data file")
+    P = p.parse_args()
+
+    file = Path(P.file).expanduser()
+
+    data = load_data(file)
+    detect_anomalies(data)
