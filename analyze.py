@@ -70,7 +70,7 @@ if __name__ == "__main__":
         #time = data["co2"].index
 
     # Room Class1
-    plot1 = plt.figure("Class 1 Temperature")
+    #plot1 = plt.figure("Class 1 Temperature")
     time = data["temperature"].index
     #data["temperature"].class1.hist(color='#90EE90')
     
@@ -81,22 +81,19 @@ if __name__ == "__main__":
     # print ('%02d' % time[0].hour + ":")
 
     class1temp = data["temperature"].class1
-    print(class1temp)
-    print("--------------------------------")
+    #print(class1temp)
+    #print("--------------------------------")
     for t in time:
         timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute) + ":" + ('%02d' % t.second)
         # print (timestr)
         class1temp = class1temp.rename(index = {t:timestr})
-    print(class1temp)
+    #print(class1temp)
 
-    # print(data["class1"])
-
-        
-
-    # plt.xlabel('time') 
-    # plt.ylabel('temperature') 
-  
-    # plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
+    plot1 = plt.figure("Class 1 Temperature")
+    class1temp.hist(color='#90EE90')
+    plt.xlabel('time') 
+    plt.ylabel('temperature') 
+    plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
 
 
     # plot2 = plt.figure("Class 1 Occupancy")
@@ -108,7 +105,7 @@ if __name__ == "__main__":
   
     # plt.title('Occupancy Condition for Class1\n\n', fontweight ="bold") 
 
-    # plt.show()
+    plt.show()
 
     # Calculate medians and variances
     print("\n----------Calculate medians and variances----------\n")
