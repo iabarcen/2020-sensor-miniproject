@@ -7,3 +7,4 @@ Python code was added to the websocker client that saves JSON data to a text fil
 
 # Task 2
 # Task 3
+![](Task3image.PNG)
