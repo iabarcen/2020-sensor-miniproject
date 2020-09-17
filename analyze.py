@@ -63,7 +63,6 @@ if __name__ == "__main__":
 
     timediff = np.diff(data["co2"].index.values).astype(np.int64) / 1000000000 # time diff in sec
 
-    # print(timediff)
 
     print("Median temperature in class 1: ", end='')
     print('%5.2f' % (class1temp.median()))
@@ -75,17 +74,23 @@ if __name__ == "__main__":
     print("Variance in occupancy in class 1: ", end='')
     print('%5.2f' % (class1occu.var()))
     print()
+
     print("Median of time intervals: ", end='')
     print('%9.4f' % (np.median(timediff)))
     print("Variance in time intervals: ", end='')
     print('%9.4f' % (np.var(timediff)))
+    print()
+
+    print("The probability density function of time intervals mimic log-normal distribution. ")
+    print("Log-normal distribution is used when analyzing stock prices and semiconductor lifetime.")
 
     # Plot PDF for sensor data in Class 1
-    class1 = plt.figure("Class 1")
+    class1 = plt.figure("Class 1 Sensor Data", figsize=(18, 6))
     class1.suptitle('Sensor Data in Class 1\n', fontsize=16)
 
     ax1 = class1.add_subplot(131)
     ax1.title.set_text('Class 1 Temperature PDF')
+    ax1.set_ylabel('Probability Density')
     sns.distplot(class1temp, kde=False, fit=stats.gamma, rug=True)
 
     ax2 = class1.add_subplot(132)
@@ -96,105 +101,19 @@ if __name__ == "__main__":
     ax3.title.set_text('Class 1 CO2 PDF')
     sns.distplot(class1co2, kde=False, fit=stats.gamma, rug=True)
 
+    ax1.set_xlabel('temperature(Celcius)')
+    ax2.set_xlabel('occupancy')
+    ax3.set_xlabel('CO2')
+
 
     # Plot PDF for time intervals of sensor readings
-    timeFig = plt.figure("Time Intervals")
+    timeFig = plt.figure("Time Intervals", figsize=(8, 6))
     sns.distplot(timediff, kde=False, fit=stats.gamma, rug=True)
+    timeFig.suptitle('PDF for Time Intervals', fontsize=16)
+    plt.xlabel('time(sec)')
+    plt.ylabel('Probablity Density')
     
-
 
     plt.show()
-
-    # for k in data:  # k = temperature, occupancy, and co2
-    #     # data[k].plot()
-    #     time = data[k].index
-    #     data[k].hist()
-    #     plt.figure()
-        # plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        # plt.xlabel("Time (seconds)")
-
-    # plt.show()
-
-    
-        #time = data["co2"].index
-
-    # # Load data from client_data.txt
-    # file_path = os.getcwd() + "\client_data.txt"
-    # data = load_data(file_path)
-
-    # # Room Class1
-    # time = data["temperature"].index
-    # class1temp = data["temperature"].class1
-    # class1occu = data["occupancy"].class1
-
-    # for t in time:
-    #     timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute)
-    #     class1temp = class1temp.rename(index = {t:timestr})
-    #     class1occu = class1occu.rename(index = {t:timestr})
-
-    # print(class1temp)
-
-    # plot1 = plt.figure("Class 1 Temperature")
-    # class1temp.hist(color='#90EE90')
-    # plt.xlabel('temperature') 
-    # plt.ylabel('times') 
-    # plt.title('Temperature Condition for Class 1\n\n', fontweight ="bold") 
-
-    # plot2 = plt.figure("Class 1 Occupancy")
-    # class1occu.hist(color='#A1C7CB')
-    # plt.xlabel('occupancy') 
-    # plt.ylabel('times') 
-    # plt.title('Occupancy Condition for Class 1\n\n', fontweight ="bold") 
-
-    # plt.show()
-
-    #plot1 = plt.figure("Class 1 Temperature")
-    #data["temperature"].class1.hist(color='#90EE90')
-    
-    #print(time.values[1].astype(datetime.datetime))
-
-    # timestr = ('%02d' % time[0].hour) + ":" + ('%02d' % time[0].minute) + ":" + ('%02d' % time[0].second)
-    # print(timestr)
-    # print ('%02d' % time[0].hour + ":")
-
-    # class1temp = data["temperature"].class1
-    # #print(class1temp)
-    # #print("--------------------------------")
-    # for t in time:
-    #     timestr = ('%02d' % t.hour) + ":" + ('%02d' % t.minute) + ":" + ('%02d' % t.second)
-    #     # print (timestr)
-    #     class1temp = class1temp.rename(index = {t:timestr})
-    # #print(class1temp)
-
-    # plot1 = plt.figure("Class 1 Temperature")
-    # class1temp.hist(color='#90EE90')
-    # plt.xlabel('time') 
-    # plt.ylabel('temperature') 
-    # plt.title('Temperature Condition for Class1\n\n', fontweight ="bold") 
-
-
-    # plot2 = plt.figure("Class 1 Occupancy")
-    # time = data["occupancy"].index
-    # data["occupancy"].class1.hist(color='#90EE90')
-
-    # plt.xlabel('time') 
-    # plt.ylabel('occupancy') 
-  
-    # plt.title('Occupancy Condition for Class1\n\n', fontweight ="bold") 
-
-    # plt.show()
-
-    # Calculate medians and variances
-    # print("\n----------Calculate medians and variances----------\n")
-
-    # print("Median temperature in class 1: ", end='')
-    # print('%5.2f' % (data["temperature"].class1.median()))
-    # print("Variance in temperature in class 1: ", end='')
-    # print('%5.2f' % (data["temperature"].class1.var()))
-    # print()
-    # print("Median occupancy in class 1: ", end='')
-    # print('%5.2f' % (data["occupancy"].class1.median()))
-    # print("Variance in occupancy in class 1: ", end='')
-    # print('%5.2f' % (data["occupancy"].class1.var()))
 
     
