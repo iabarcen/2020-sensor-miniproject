@@ -5,7 +5,7 @@ Authors: Ivan Barcenes, Yuting Chen
 
 ## Task 0: Setup Python Websockets
 After running the Python code on our computers, the greeting string issued by the server to the client upon first connecting is 
-```sh
+```
 ECE Senior Capstone IoT simulator
 ```
 <p align="center">
@@ -18,7 +18,7 @@ Python code was added to the websocket client that saves JSON data to a text fil
 
 ## Task 2: Analysis
 Now we have all sensor data in "client_data.txt". We then analyze the temperature and occupancy data in class 1 by using Pandas. Then we use seaborn to plot the probability density function for the three sensors in class1.
-```sh
+```
 ----------Calculate medians and variances----------
 
 Median temperature in class 1: 26.9858
@@ -32,7 +32,7 @@ Variance in occupancy in class 1: 17.1122
 </p>
 After that, we calculate the median and variance of time intervals of all sensor readings. Here we use Numpy, as the time index array is a ndarray. We then use seaborn to plot the probability density function. 
 
-```sh
+```
 Median of time intervals: 0.6917
 Variance in time intervals: 0.9325
 ```
@@ -48,7 +48,7 @@ The probability density function of time intervals mimics log-normal distributio
 
 ## Task 3: Design
 An algorithm was made using python code which which detects anomalies in tbe tempeture data from class1, and then prints out the percent of bad data. The code then deletes the bad data and prints the median and variance before and after the anomalies were removed.
-```sh
+```
 The percentage of "bad" data points for class1 is 1.6353%
 The temperature median and variance with these anomalies removed are,
 Median: 26.9937
@@ -63,7 +63,7 @@ Analyzing the data in the text file generated in Task 1 we see that when an anom
 There are three different room types for data is collected and they are "class1", "lab1", and "office". By applying the same criteria used to detect anomalies to each room, the bounds for data was found. The critera used was
 ```
   upper bound = median + standard deviation
-  lower bound - median - standard deviation
+  lower bound = median - standard deviation
 ```
 It follows that the results for each room are:
 - **Class1**: 22.6-31.4 degrees celcius     
