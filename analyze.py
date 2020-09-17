@@ -63,26 +63,23 @@ if __name__ == "__main__":
 
     timediff = np.diff(data["co2"].index.values).astype(np.int64) / 1000000000 # time diff in sec
 
-
     print("Median temperature in class 1: ", end='')
-    print('%5.2f' % (class1temp.median()))
+    print('%5.4f' % (class1temp.median()))
     print("Variance in temperature in class 1: ", end='')
-    print('%5.2f' % (class1temp.var()))
+    print('%5.4f' % (class1temp.var()))
     print()
     print("Median occupancy in class 1: ", end='')
-    print('%5.2f' % (class1occu.median()))
+    print('%5.4f' % (class1occu.median()))
     print("Variance in occupancy in class 1: ", end='')
-    print('%5.2f' % (class1occu.var()))
+    print('%5.4f' % (class1occu.var()))
     print()
 
     print("Median of time intervals: ", end='')
-    print('%9.4f' % (np.median(timediff)))
+    print('%5.4f' % (np.median(timediff)))
     print("Variance in time intervals: ", end='')
-    print('%9.4f' % (np.var(timediff)))
+    print('%5.4f' % (np.var(timediff)))
     print()
 
-    print("The probability density function of time intervals mimic log-normal distribution. ")
-    print("Log-normal distribution is used when analyzing stock prices and semiconductor lifetime.")
 
     # Plot PDF for sensor data in Class 1
     class1 = plt.figure("Class 1 Sensor Data", figsize=(18, 6))
@@ -95,10 +92,12 @@ if __name__ == "__main__":
 
     ax2 = class1.add_subplot(132)
     ax2.title.set_text('Class 1 Occupancy PDF')
+    ax2.set_ylabel('Probability Density')
     sns.distplot(class1occu, kde=False, fit=stats.gamma, rug=True)
 
     ax3 = class1.add_subplot(133)
     ax3.title.set_text('Class 1 CO2 PDF')
+    ax3.set_ylabel('Probability Density')
     sns.distplot(class1co2, kde=False, fit=stats.gamma, rug=True)
 
     ax1.set_xlabel('temperature(Celcius)')
