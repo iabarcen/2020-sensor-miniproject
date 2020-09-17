@@ -42,12 +42,13 @@ Variance in time intervals: 0.9325
 The probability density function of time intervals mimics Erlang distribution. The Erlang distribution is a two-parameter family of continuous probability distributions with nonnegative x. The two parameters are:
 
 - k, a positive integer that determines the "shape";
-- λ, a positive real numbeer that determines the "rate".
+- λ, a positive real number that determines the "rate". (Or μ, the reciprocal of rate λ that determines the "scale")
 
 It's often used today to model waiting times in queueing systems and in the field of stochastic processes.
 
 <p align="center">
-  <img src="./images/lognormal.jpg" width="50%"/>
+  <img src="./images/erlangDist.PNG" width="40%"/>
+  <br><br>
   <img src="./images/Task2image.PNG" width="80%"/>
 </p><br><br>
 
