@@ -31,6 +31,7 @@ Variance in occupancy in class 1: 17.1122
   <img src="./images/SensorData.PNG"/>
 </p>
 After that, we calculate the median and variance of time intervals of all sensor readings. Here we use Numpy, as the time index array is a ndarray. We then use seaborn to plot the probability density function. 
+
 ```sh
 Median of time intervals: 0.6917
 Variance in time intervals: 0.9325
