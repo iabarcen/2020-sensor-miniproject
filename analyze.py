@@ -17,6 +17,8 @@ import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
 
+import seaborn as sns
+from scipy import stats
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
@@ -44,20 +46,74 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
 
 if __name__ == "__main__":
+
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
     p.add_argument("file", help="path to JSON data file")
     P = p.parse_args()
-
     file = Path(P.file).expanduser()
-
     data = load_data(file)
 
-    for k in data:
-        # data[k].plot()
-        time = data[k].index
-        data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
+
+    # Calculate medians and variances
+    print("\n----------Calculate medians and variances----------\n")
+
+    class1temp = data["temperature"].class1
+    class1occu = data["occupancy"].class1
+    class1co2 = data["co2"].class1
+
+    timediff = np.diff(data["co2"].index.values).astype(np.int64) / 1000000000 # time diff in sec
+
+
+    print("Median temperature in class 1: ", end='')
+    print('%5.2f' % (class1temp.median()))
+    print("Variance in temperature in class 1: ", end='')
+    print('%5.2f' % (class1temp.var()))
+    print()
+    print("Median occupancy in class 1: ", end='')
+    print('%5.2f' % (class1occu.median()))
+    print("Variance in occupancy in class 1: ", end='')
+    print('%5.2f' % (class1occu.var()))
+    print()
+
+    print("Median of time intervals: ", end='')
+    print('%9.4f' % (np.median(timediff)))
+    print("Variance in time intervals: ", end='')
+    print('%9.4f' % (np.var(timediff)))
+    print()
+
+    print("The probability density function of time intervals mimic log-normal distribution. ")
+    print("Log-normal distribution is used when analyzing stock prices and semiconductor lifetime.")
+
+    # Plot PDF for sensor data in Class 1
+    class1 = plt.figure("Class 1 Sensor Data", figsize=(18, 6))
+    class1.suptitle('Sensor Data in Class 1\n', fontsize=16)
+
+    ax1 = class1.add_subplot(131)
+    ax1.title.set_text('Class 1 Temperature PDF')
+    ax1.set_ylabel('Probability Density')
+    sns.distplot(class1temp, kde=False, fit=stats.gamma, rug=True)
+
+    ax2 = class1.add_subplot(132)
+    ax2.title.set_text('Class 1 Occupancy PDF')
+    sns.distplot(class1occu, kde=False, fit=stats.gamma, rug=True)
+
+    ax3 = class1.add_subplot(133)
+    ax3.title.set_text('Class 1 CO2 PDF')
+    sns.distplot(class1co2, kde=False, fit=stats.gamma, rug=True)
+
+    ax1.set_xlabel('temperature(Celcius)')
+    ax2.set_xlabel('occupancy')
+    ax3.set_xlabel('CO2')
+
+
+    # Plot PDF for time intervals of sensor readings
+    timeFig = plt.figure("Time Intervals", figsize=(8, 6))
+    sns.distplot(timediff, kde=False, fit=stats.gamma, rug=True)
+    timeFig.suptitle('PDF for Time Intervals', fontsize=16)
+    plt.xlabel('time(sec)')
+    plt.ylabel('Probablity Density')
+    
 
     plt.show()
+
+    
