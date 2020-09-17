@@ -8,8 +8,9 @@ After running the Python code on our computers, the greeting string issued by th
 ```sh
 ECE Senior Capstone IoT simulator
 ```
-<center><img src="./images/Task0image.PNG" width="80%" /></center>  
-<br><br>
+<p align="center">
+  <img src="./images/Task0image.PNG" width="80%"/>
+</p><br><br>
 
 ## Task 1: Data Flow
 Python code was added to the websocket client that saves JSON data to a text file as it comes in message by message. The name of this file is "client_data.txt". This file was added to the repo.
@@ -26,20 +27,22 @@ Variance in temperature in class 1: 19.2407
 Median occupancy in class 1: 19.0000
 Variance in occupancy in class 1: 17.1122
 ```
-![](images/SensorData.PNG)
+<p align="center">
+  <img src="./images/SensorData.PNG"/>
+</p>
 After that, we calculate the median and variance of time intervals of all sensor readings. Here we use Numpy, as the time index array is a ndarray. We then use seaborn to plot the probability density function. 
 ```sh
 Median of time intervals: 0.6917
 Variance in time intervals: 0.9325
 ```
-<center><img src="./images/timeIntervals.PNG" width="40%" /></center>  
-The probability density function of time intervals mimics log-normal distribution. Log-normal distribution is a continuous probability distribution of a random variable whose logarithm is normally distributed. It is often used when modeling stock prices and semiconductor lifetime. 
-<center><img src="./images/lognormal.jpg" width="50%" /></center> 
-<center><img src="./images/Task2image.PNG" width="80%" /></center> 
 <p align="center">
-  <img src="./images/Task2image.PNG" width="50%"/>
-</p>
-<br><br>
+  <img src="./images/timeIntervals.PNG" width="40%"/>
+</p> 
+The probability density function of time intervals mimics log-normal distribution. Log-normal distribution is a continuous probability distribution of a random variable whose logarithm is normally distributed. It is often used when modeling stock prices and semiconductor lifetime. 
+<p align="center">
+  <img src="./images/lognormal.jpg" width="50%"/>
+  <img src="./images/Task2image.PNG" width="80%"/>
+</p><br><br>
 
 
 ## Task 3: Design
@@ -61,8 +64,9 @@ There are three different room types for data is collected and they are "class1"
 - **Lab1**: 15-25 degrees celcius       ---    The temperature  is typical for a lab, with less room for fluctuation for tempetaure sensitive lab work.   
 - **Office**: 15-30 degrees celcius     ---    Like the class, this is typical range of an office with depending on the seasonal weather.
 
-<center><img src="./images/Task3image.PNG" width="80%" /></center> 
-<br><br>
+<p align="center">
+  <img src="./images/Task3image.PNG" width="80%"/>
+</p><br><br>
 
 ## Task 4: Conclusions
 1. This simulation is reflective of the real-world because many sensors use websocket comunication to relay data. In many cases this data is saved and analyzed and checked for anomalies. Sensors are not perfect, so there will be variability in sensor readings like in this simulation.<br><br>
@@ -71,8 +75,6 @@ There are three different room types for data is collected and they are "class1"
 4. It depends. It's better to have sensors reach out to server only when having data if some sensors are giving data over a long time period. A server may connect to a large number of sensors with different time intervals. It will waste a large amount of energy if the server is asking for data every second while some sensors are giving data every hour. However, if we know the sensors are giving data at a high speed, it is easier for a server to poll the sensors, as it can easily arrange and check the data values from a large number of sensors. In this problem, it's better to have server poll the sensors. 
 <br><br>
 
-- how is the difficulty of initially using this Python websockets library as compared to a compiled language e.g. C++ websockets
-- would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
 
 ## References
 - [The Lognormal Distribution vs. the Normal Distribution](https://analystprep.com/cfa-level-1-exam/quantitative-methods/lognormal-distribution/)
