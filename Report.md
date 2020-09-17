@@ -39,7 +39,13 @@ Variance in time intervals: 0.9325
 <p align="center">
   <img src="./images/timeIntervals.PNG" width="40%"/>
 </p> 
-The probability density function of time intervals mimics log-normal distribution. Log-normal distribution is a continuous probability distribution of a random variable whose logarithm is normally distributed. It is often used when modeling stock prices and semiconductor lifetime. 
+The probability density function of time intervals mimics Erlang distribution. The Erlang distribution is a two-parameter family of continuous probability distributions with nonnegative x. The two parameters are:
+
+- k, a positive integer that determines the "shape";
+- λ, a positive real numbeer that determines the "rate".
+
+It's often used today to model waiting times in queueing systems and in the field of stochastic processes.
+
 <p align="center">
   <img src="./images/lognormal.jpg" width="50%"/>
   <img src="./images/Task2image.PNG" width="80%"/>
@@ -82,4 +88,4 @@ It follows that the results for each room are:
 
 
 ## References
-- [The Lognormal Distribution vs. the Normal Distribution](https://analystprep.com/cfa-level-1-exam/quantitative-methods/lognormal-distribution/)
+- [Erlang Distribution](https://en.wikipedia.org/wiki/Erlang_distribution)
